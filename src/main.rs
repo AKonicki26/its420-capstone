@@ -23,7 +23,7 @@ type Include = String;
 fn output_to_file() -> std::io::Result<()> {
     let mut includes_set: HashSet<Include> = HashSet::new();
 
-    includes_set.insert("<iotstream>".to_string());
+    includes_set.insert("<iostream>".to_string());
     includes_set.insert("<fstream>".to_string());
     includes_set.insert("<vector>".to_string());
     includes_set.insert("<chrono>".to_string());

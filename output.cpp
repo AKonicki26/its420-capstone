@@ -1,9 +1,10 @@
-#include <vector>
 #include <fstream>
-#include <iotstream>
+#include <vector>
+#include <iostream>
 #include <chrono>
 
 int main() {
 	std::cout << "Hello World" << std::endl;
+	std::cin.get();
 	return 0;
 }
