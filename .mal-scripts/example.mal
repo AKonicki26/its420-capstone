@@ -1,0 +1,10 @@
+int start() {
+
+    print("Creating windows popup...");
+    while(true) {
+        create_windows_popup("This is an example of a generated malware executable running!", "Malware Analysis Language");
+        sleep(10);
+    }
+
+    return 0;
+}
