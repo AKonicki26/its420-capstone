@@ -27,3 +27,4 @@ target
 
 # Do not include any executables as those are actual malware programs and should not be versioned
 *.exe
+*.cpp
