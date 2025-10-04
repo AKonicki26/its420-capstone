@@ -1,6 +1,8 @@
 use std::any::Any;
 use regex::Regex;
 
+// TODO: Cull this list
+
 #[derive(Debug)]
 pub enum Token {
     Whitespace,
@@ -124,11 +126,11 @@ lazy_static::lazy_static! {
     pub static ref TOKEN_CONVERTERS: Vec<(Regex, fn(i128, String) -> Token)> = vec![
         token!(r"[ \t]+", |_, _| Token::Whitespace),
         token!(r"\r?\n", |index, _| Token::LineBreak { index }),
-        token!(r"//(.*?)(?=\r?\n|$)", |index, val| Token::Comment { index, value: val[2..].to_string() }),
+        //token!(r"//(.*?)(?=\r?\n|$)", |index, val| Token::Comment { index, value: val[2..].to_string() }),
         token!(r#""[^"\r\n]+""#, |index, val| Token::StringLiteral { index, value: val.remove_first_and_last() }),
         token!(r#"'[^'\r\n]+'"#, |index, val| Token::StringLiteral { index, value: val.remove_first_and_last() }),
         token!(r#"`[^`]+`"#, |index, val| Token::StringLiteral { index, value: val.remove_first_and_last() }),
-        token!(r"-?[0-9]+\.?[0-9]*(?![a-zA-Z$_])", |index, val| Token::NumberLiteral { index, value: val.parse::<f64>().unwrap() }),
+        //token!(r"-?[0-9]+\.?[0-9]*(?![a-zA-Z$_])", |index, val| Token::NumberLiteral { index, value: val.parse::<f64>().unwrap() }),
 
         // punctuation / symbols
         token!(r"\{", |index, _| Token::LBrace { index }),
@@ -228,7 +230,7 @@ impl Tokenizer {
             let has_match = false;
 
             for (regex, creator) in TOKEN_CONVERTERS.iter() {
-                todo!("")
+                todo!("Implement the rest of the tokenizer");
 
 
             }
