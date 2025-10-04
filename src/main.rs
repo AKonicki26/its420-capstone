@@ -1,13 +1,20 @@
+mod tokenizer;
+
 use std::collections::HashSet;
 use std::fs;
 use regex::Regex;
+use crate::tokenizer::Tokenizer;
 
 fn main() {
 
+    Tokenizer::tokenize("let x = 5");
+
+    /*
     match generate_malware() {
         Ok(()) => { println!("done"); }
         Err(e) => { println!("failed: {}", e); }
     }
+    */
 }
 
 type Include = String;
