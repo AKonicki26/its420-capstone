@@ -177,12 +177,15 @@ pub struct Tokenizer {
 
 impl Tokenizer {
     pub(crate) fn tokenize(input: &str) -> Vec<Token> {
+
+        println!("Tokenizing \"{}\"...", input);
+
         let mut index = 0;
         let mut tokens: Vec<Token> = vec![];
 
         // while there is still file left to parse
         while (index < input.len()) {
-            let has_match = false;
+            let mut has_match = false;
 
             // for every token we know about
             for (r, creator) in TOKEN_CONVERTERS.iter() {
@@ -197,13 +200,16 @@ impl Tokenizer {
                 // if we have a match...
                 if first_match.is_ok() && let match_optional = first_match.unwrap() && match_optional.is_some() {
 
+
+                    has_match = true;
+
                     // get the token from the match
                     //println!("Testing regex: {}", r.to_string());
                     let match_str = match_optional.unwrap();
 
                     //println!("Match: {}", match_str.as_str());
-                    let token = creator(0, match_str.as_str().parse().unwrap());
-                    println!("{}", regex.replace(&input, format!("[{:?}]", token)));
+                    let token = creator(index as i128, match_str.as_str().parse().unwrap());
+                    //println!("{}", regex.replace(&input, format!("[{:?}]", token)));
 
                     // increase the index by how much we moves
                     index += match_str.end() - match_str.start();
