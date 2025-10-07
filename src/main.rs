@@ -7,7 +7,7 @@ use crate::tokenizer::Tokenizer;
 
 fn main() {
 
-    Tokenizer::tokenize("let x = 5");
+    Tokenizer::tokenize("let x = 5.05;");
 
     /*
     match generate_malware() {
