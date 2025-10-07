@@ -7,7 +7,7 @@ use crate::tokenizer::Tokenizer;
 
 fn main() {
 
-    Tokenizer::tokenize("let x = 5.05;");
+    Tokenizer::tokenize("let x: int = 5.05;");
 
     let data =  read_malware_program("./.mal-scripts/example.mal").unwrap();
     Tokenizer::tokenize(&*data);

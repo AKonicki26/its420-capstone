@@ -167,6 +167,7 @@ lazy_static::lazy_static! {
         token!(r"as", |index, _| Token::As { index }),
         token!(r"for", |index, _| Token::For { index }),
         token!(r"while", |index, _| Token::While { index }),
+        token!(r"on_loop", |index, _| Token::While { index }),
         token!(r"break", |index, _| Token::Break { index }),
         token!(r"continue", |index, _| Token::Continue { index }),
         token!(r"if", |index, _| Token::If { index }),
