@@ -9,7 +9,6 @@ pub enum Token {
     LineBreak { index: i128 },
     Comment { index: i128, value: String },
     StringLiteral { index: i128, value: String },
-    IntegerLiteral { index: i128, value: i64 },
     NumberLiteral { index: i128, value: f64 },
     Identifier { index: i128, value: String },
 
@@ -27,6 +26,12 @@ pub enum Token {
     Return { index: i128 },
     Let { index: i128 },
     Const { index: i128 },
+    Start { index: i128 },
+    OnLoop { index: i128 },
+    IntKeyword { index: i128 },
+    DecimalKeyword { index: i128 },
+    StringKeyword { index: i128 },
+    BooleanKeyword { index: i128 },
 
     // operators & symbols
     LBrace { index: i128 },
@@ -38,6 +43,7 @@ pub enum Token {
     Semicolon { index: i128 },
     Colon { index: i128 },
     Dot { index: i128 },
+    Comma { index: i128 },
     Pow { index: i128 },
     Star { index: i128 },
     DoubleEq { index: i128 },
@@ -122,6 +128,7 @@ lazy_static::lazy_static! {
         token!(r";", |index, _| Token::Semicolon { index }),
         token!(r":", |index, _| Token::Colon { index }),
         token!(r"\.", |index, _| Token::Dot { index }),
+        token!(r"\,", |index, _| Token::Comma { index }),
         token!(r"\*\*", |index, _| Token::Pow { index }),
         token!(r"\*", |index, _| Token::Star { index }),
         token!(r"==", |index, _| Token::DoubleEq { index }),
@@ -150,6 +157,11 @@ lazy_static::lazy_static! {
 
         // keywords / literals
         token!(r"null", |index, _| Token::Null { index }),
+        token!(r"start", |index, _| Token::Start { index }),
+        token!(r"int", |index, _| Token::IntKeyword { index }),
+        token!(r"decimal", |index, _| Token::DecimalKeyword { index }),
+        token!(r"string", |index, _| Token::StringKeyword { index }),
+        token!(r"bool", |index, _| Token::BooleanKeyword { index }),
         token!(r"true", |index, _| Token::True { index }),
         token!(r"false", |index, _| Token::False { index }),
         token!(r"as", |index, _| Token::As { index }),
@@ -227,7 +239,8 @@ impl Tokenizer {
 
             // if no tokens match, error
             if !has_match {
-                println!("No match found");
+                println!("No match found for: {}", &input[index..]);
+                break;
             }
         }
 

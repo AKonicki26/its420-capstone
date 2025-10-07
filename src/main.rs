@@ -9,6 +9,8 @@ fn main() {
 
     Tokenizer::tokenize("let x = 5.05;");
 
+    let data =  read_malware_program("./.mal-scripts/example.mal").unwrap();
+    Tokenizer::tokenize(&*data);
     /*
     match generate_malware() {
         Ok(()) => { println!("done"); }
