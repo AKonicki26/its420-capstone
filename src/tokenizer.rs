@@ -227,8 +227,8 @@ impl Tokenizer {
                     // increase the index by how much we moves
                     index += match_str.end() - match_str.start();
 
-                    // we dont care about whitespace
-                    if (!matches!(token, Whitespace)) {
+                    // we dont care about whitespace or linebreaks
+                    if (!(matches!(token, Whitespace) || matches!(token, Token::LineBreak {..}))) {
                         // add tokens to list
                         tokens.push(token);
                     }
